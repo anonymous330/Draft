@@ -31,7 +31,20 @@ def submit(request):
     print(dd_no,dd_name,dd_amount,dd_bank)
     return redirect('index')
 
+def change(request,id):
+    if request.method =='POST':
+        dd_name=request.POST['dd_name']
+        dd_amount=request.POST['dd_amount']
+        dd_bank=request.POST['dd_bank']
+        demand_draft.objects.filter(pk=id).update(dd_name=dd_name,dd_bank=dd_bank,dd_no=id,dd_amount=dd_amount)
+        return redirect('search')
+    id = id
+    print('hello',id)
+    data={
+    'dd_data':demand_draft.objects.get(dd_no=id)
+    }
 
+    return render(request,'catlog/change.html',data)
 def search(request):
 
     dd_dict={

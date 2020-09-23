@@ -49,6 +49,7 @@
       <th scope="col">डिमांड ड्राफ्ट बैंक</th>
       <th scope="col">डिमांड ड्राफ्ट अमाउंट </th>
       <th scope="col">डिमांड ड्राफ्ट की दिनांक</th>
+      <th scope="col">Edit</th>
     </tr>
   </thead>
   <tbody>
@@ -60,6 +61,7 @@
       <td>{{i.dd_bank}}</td>
       <td>{{i.dd_amount}}</td>
       <td>{{i.dd_date}}</td>
+      <td><a href="{% url 'change' i.dd_no %}">edit</a>h</td>
     </tr>
     {% endfor %}
   </tbody>

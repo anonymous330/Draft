@@ -1,0 +1,131 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta http-equiv="X-UA-Compatible" content="ie=edge">
+  <link rel="stylesheet" href="https://bootswatch.com/4/darkly/bootstrap.min.css">
+  <script src="https://code.jquery.com/jquery-3.5.1.slim.min.js" integrity="sha384-DfXdz2htPH0lsSSs5nCTpuj/zy4C+OGpamoFVy38MVBnE+IbbVYUew+OrCXaRkfj" crossorigin="anonymous"></script>
+<script src="https://cdn.jsdelivr.net/npm/popper.js@1.16.0/dist/umd/popper.min.js" integrity="sha384-Q6E9RHvbIyZFJoft+2mJbHaEWldlvI9IOYy5n3zV9zzTtmI3UksdQRVvoxMfooAo" crossorigin="anonymous"></script>
+<script src="https://stackpath.bootstrapcdn.com/bootstrap/4.5.0/js/bootstrap.min.js" integrity="sha384-OgVRvuATP1z7JjHLkuOU7Xw704+h835Lr+6QL9UvYjZE3Ipu6Tp75j7Bh/kR0JKI" crossorigin="anonymous"></script>
+  <script src="https://code.jquery.com/jquery-3.1.1.min.js" integrity="sha256-hVVnYaiADRTO2PzUGmuLJr8BLUSjGIZsDYGmIJLv2b8=" crossorigin="anonymous"></script>
+
+  <title>Change/Edit</title>
+</head>
+<body class="container">
+<nav class="navbar navbar-expand-lg navbar-dark bg-dark">
+  <a class="navbar-brand" href="{% url 'index' %}">Navbar</a>
+  <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarColor02" aria-controls="navbarColor02" aria-expanded="false" aria-label="Toggle navigation">
+    <span class="navbar-toggler-icon"></span>
+  </button>
+
+  <div class="collapse navbar-collapse" id="navbarColor02">
+    <ul class="navbar-nav mr-auto">
+      <li class="nav-item active">
+        <a class="nav-link" href="{% url 'index' %}">Home <span class="sr-only">(current)</span></a>
+      </li>
+
+
+    </ul>
+      <a class="btn btn-secondary my-2 my-sm-0" href="{% url 'search' %}">Search</a>
+  </div>
+</nav>
+
+
+  <form action="{% url 'change' dd_data.dd_no %}" method="post">
+    {% csrf_token %}
+    <fieldset>
+
+<legend style="margin-bottom:40px;margin-top:50px;">कृपया डिमांड ड्राफ्ट की जानकारी बदले </legend>
+      <div class="form-group">
+        <label>डिमांड ड्राफ्ट का नंबर </label>
+        <input type="text" class="form-control" value={{dd_data.dd_no}} name="dd_no">
+      </div>
+      <div class="form-group">
+        <label >डिमांड ड्राफ्ट में लिखा नाम</label>
+        <input type="text" class="form-control" value={{dd_data.dd_name}} name="dd_name">
+      </div>
+
+      <div class="form-group">
+        <label>डिमांड ड्राफ्ट अमाउंट</label>
+        <input type="text"  class="form-control" value={{dd_data.dd_amount}} name="dd_amount">
+      </div>
+
+      <div class="form-group">
+        <label for="exampleSelect1">डिमांड ड्राफ्ट का बैंक चयन करें</label>
+        <select class="form-control" id="exampleSelect1" name="dd_bank">
+          <option value="AKOLA JANATA COMMERCIAL COOPERATIVE BANK">AKOLA JANATA COMMERCIAL COOPERATIVE BANK</option>
+          <option value="Disst Coperative Bank">Disst Coperative Bank</option>
+          <option value="ALLAHABAD BANK">ALLAHABAD BANK</option>
+          <option value="ANDHRA BANK">ANDHRA BANK</option>
+          <option value="AXIS BANK">AXIS BANK</option>
+          <option value="BANDHAN BANK LIMITED">BANDHAN BANK LIMITED</option>
+          <option value="BANK OF BARODA">BANK OF BARODA</option>
+          <option value="BANK OF INDIA">BANK OF INDIA</option>
+          <option value="BANK OF MAHARASHTRA">BANK OF MAHARASHTRA</option>
+          <option value="BHARATIYA MAHILA BANK LIMITED">BHARATIYA MAHILA BANK LIMITED</option>
+          <option value="CANARA BANK">CANARA BANK</option>
+          <option value="CATHOLIC SYRIAN BANK LIMITED<">CATHOLIC SYRIAN BANK LIMITED</option>
+          <option value="CENTRAL BANK OF INDIA<">CENTRAL BANK OF INDIA</option>
+          <option value="CITI BANK">CITI BANK</option>
+          <option value="CITY UNION BANK LIMITED">CITY UNION BANK LIMITED</option>
+          <option value="ORPORATION BANK">CORPORATION BANK</option>
+          <option value="DCB BANK LIMITED">DCB BANK LIMITED</option>
+          <option value="DENA BANK">DENA BANK</option>
+          <option value="DHANALAKSHMI BANK">DHANALAKSHMI BANK</option>
+          <option value="FEDERAL BANK">FEDERAL BANK</option>
+          <option value="HDFC BANK">HDFC BANK</option>
+          <option value="HSBC BANK">HSBC BANK</option>
+          <option value="ICICI BANK LIMITED">ICICI BANK LIMITED</option>
+          <option value="IDBI BANK">IDBI BANK</option>
+          <option value="INDIAN BANK">INDIAN BANK</option>
+          <option value="INDIAN OVERSEAS BANK">INDIAN OVERSEAS BANK</option>
+          <option value="INDUSIND BANK">INDUSIND BANK</option>
+          <option value="NG VYSYA BANK<">ING VYSYA BANK</option>
+          <option value="JAMMU AND KASHMIR BANK LIMITED">JAMMU AND KASHMIR BANK LIMITED</option>
+          <option value="KARNATAKA BANK LIMITED">KARNATAKA BANK LIMITED</option>
+          <option value="KARUR VYSYA BANK">KARUR VYSYA BANK</option>
+          <option value="KOTAK MAHINDRA BANK LIMITED">KOTAK MAHINDRA BANK LIMITED</option>
+          <option value="LAXMI VILAS BANK">LAXMI VILAS BANK</option>
+          <option value="Madhyanchal Gramin Bank">Madhyanchal Gramin Bank</option>
+          <option value="NAGPUR NAGARIK SAHAKARI BANK LIMITED">NAGPUR NAGARIK SAHAKARI BANK LIMITED</option>
+          <option value="NAGPUR NAGRIK SAHAKARI BANK LTD">NAGPUR NAGRIK SAHAKARI BANK LTD</option>
+          <option value="ORIENTAL BANK OF COMMERCE">ORIENTAL BANK OF COMMERCE</option>
+          <option value="PUNJAB AND SIND BANK">PUNJAB AND SIND BANK</option>
+          <option value="UNJAB NATIONAL BANK">PUNJAB NATIONAL BANK</option>
+          <option value="RATNAKAR BANK LIMITED">RATNAKAR BANK LIMITED</option>
+          <option value="RESERVE BANK OF INDIA">RESERVE BANK OF INDIA</option>
+          <option value="SARASWAT COOPERATIVE BANK LIMITED<">SARASWAT COOPERATIVE BANK LIMITED</option>
+          <option value="SOUTH INDIAN BANK">SOUTH INDIAN BANK</option>
+          <option value="STANDARD CHARTERED BANK">STANDARD CHARTERED BANK</option>
+          <option value="STATE BANK OF BIKANER AND JAIPUR">STATE BANK OF BIKANER AND JAIPUR</option>
+          <option value="STATE BANK OF HYDERABAD">STATE BANK OF HYDERABAD</option>
+          <option value="STATE BANK OF INDIA">STATE BANK OF INDIA</option>
+          <option value="STATE BANK OF MYSORE">STATE BANK OF MYSORE</option>
+          <option value="STATE BANK OF PATIALA">STATE BANK OF PATIALA</option>
+          <option value="TATE BANK OF TRAVANCORE">STATE BANK OF TRAVANCORE</option>
+          <option value="SYNDICATE BANK">SYNDICATE BANK</option>
+          <option value="TAMILNAD MERCANTILE BANK LIMITED">TAMILNAD MERCANTILE BANK LIMITED</option>
+          <option value="THE COSMOS CO OPERATIVE BANK LIMITED">THE COSMOS CO OPERATIVE BANK LIMITED</option>
+          <option value="THE SHAMRAO VITHAL COOPERATIVE BANK">THE SHAMRAO VITHAL COOPERATIVE BANK</option>
+          <option value="UCO BANK">UCO BANK</option>
+          <option value="UNION BANK OF INDIA">UNION BANK OF INDIA</option>
+          <option value="UNITED BANK OF INDIA">UNITED BANK OF INDIA</option>
+          <option value="VIJAYA BANK">VIJAYA BANK</option>
+          <option value="YES BANK">YES BANK</option>
+        </select>
+      </div>
+    </fieldset>
+    <button type="submit" class="btn btn-primary">Update</button>
+  </form>
+  <div class="progress" style="margin-top:20px; margin-bottom:20px;">
+    <div class="progress-bar progress-bar-striped progress-bar-animated" role="progressbar" aria-valuenow="75" aria-valuemin="0" aria-valuemax="100" style="width: 100%" ></div>
+  </div>
+
+  <div class="alert alert-dismissible alert-warning">
+  <button type="button" class="close" data-dismiss="alert">&times;</button>
+  <h4 class="alert-heading">Warning!</h4>
+  <p class="mb-0">कृपया Update बटन पर क्लिक करने से पूर्व एक बार पुनः डिमांड ड्राफ्ट की जानकारी की जांच कर ले। </p>
+</div>
+</body>
+</html>
