@@ -5,14 +5,14 @@ from .models import demand_draft
 
 
 def login(request):
-    if request.method =='GET':
-        return render(request,'catlog/login.html')
-
-    user=int(request.POST['user'])
-    password=int(request.POST['password'])
-    if user == int(46998) and password == int(123):
-        return render(request,'catlog/index.html')
-    return render(request,'catlog/login.html')
+    # if request.method =='GET':
+    #     return render(request,'catlog/login.html')
+    #
+    # user=int(request.POST['user'])
+    # password=int(request.POST['password'])
+    # if user == int(46998) and password == int(123):
+    return render(request,'catlog/index.html')
+    # return render(request,'catlog/login.html')
 
 
 def index(request):
