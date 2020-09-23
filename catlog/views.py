@@ -37,7 +37,8 @@ def change(request,id):
         dd_name=request.POST['dd_name']
         dd_amount=request.POST['dd_amount']
         dd_bank=request.POST['dd_bank']
-        demand_draft.objects.filter(pk=id).update(dd_name=dd_name,dd_bank=dd_bank,dd_no=dd_no,dd_amount=dd_amount)
+        dd_date=request.POST['dd_date']
+        demand_draft.objects.filter(pk=id).update(dd_name=dd_name,dd_bank=dd_bank,dd_no=dd_no,dd_amount=dd_amount,dd_date=dd_date)
         return redirect('search')
     data={
     'dd_data':demand_draft.objects.get(dd_no=id)

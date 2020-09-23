@@ -11,6 +11,18 @@
   <script src="https://code.jquery.com/jquery-3.1.1.min.js" integrity="sha256-hVVnYaiADRTO2PzUGmuLJr8BLUSjGIZsDYGmIJLv2b8=" crossorigin="anonymous"></script>
 
   <title>Change/Edit</title>
+
+  <link rel="stylesheet" href="//code.jquery.com/ui/1.12.1/themes/base/jquery-ui.css">
+  <link rel="stylesheet" href="/resources/demos/style.css">
+  <script src="https://code.jquery.com/jquery-1.12.4.js"></script>
+  <script src="https://code.jquery.com/ui/1.12.1/jquery-ui.js"></script>
+  <script>
+  $( function() {
+    $( "#datepicker" ).datepicker({ dateFormat: 'yy-mm-dd' });
+  } );
+  </script>
+
+
 </head>
 <body class="container">
 <nav class="navbar navbar-expand-lg navbar-dark bg-dark">
@@ -39,17 +51,18 @@
 <legend style="margin-bottom:40px;margin-top:50px;">कृपया डिमांड ड्राफ्ट की जानकारी बदले </legend>
       <div class="form-group">
         <label>डिमांड ड्राफ्ट का नंबर </label>
-        <input type="text" class="form-control" value={{dd_data.dd_no}} name="dd_no">
+        <input type="text" class="form-control" value="{{dd_data.dd_no}}" name="dd_no">
       </div>
       <div class="form-group">
         <label >डिमांड ड्राफ्ट में लिखा नाम</label>
-        <input type="text" class="form-control" value={{dd_data.dd_name}} name="dd_name">
+        <input type="text" class="form-control" value="{{dd_data.dd_name}}" name="dd_name">
       </div>
 
       <div class="form-group">
         <label>डिमांड ड्राफ्ट अमाउंट</label>
-        <input type="text"  class="form-control" value={{dd_data.dd_amount}} name="dd_amount">
+        <input type="text"  class="form-control" value="{{dd_data.dd_amount}}" name="dd_amount">
       </div>
+
 
       <div class="form-group">
         <label for="exampleSelect1">डिमांड ड्राफ्ट का बैंक चयन करें</label>
@@ -115,7 +128,14 @@
           <option value="YES BANK">YES BANK</option>
         </select>
       </div>
+
     </fieldset>
+    <div class="form-group">
+      <label>डिमांड ड्राफ्ट की दिनांक  </label>
+      <input type="text" class="form-control"  id="datepicker" value="{{dd_data.dd_date|date:"Y-m-d"}}" placeholder="YYYY-MM-DD" name='dd_date'/>
+      <!-- <input type="text" id="datepicker"> -->
+
+    </div>
     <button type="submit" class="btn btn-primary">Update</button>
   </form>
   <div class="progress" style="margin-top:20px; margin-bottom:20px;">
