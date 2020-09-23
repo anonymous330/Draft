@@ -33,13 +33,12 @@ def submit(request):
 
 def change(request,id):
     if request.method =='POST':
+        dd_no=request.POST['dd_no']
         dd_name=request.POST['dd_name']
         dd_amount=request.POST['dd_amount']
         dd_bank=request.POST['dd_bank']
-        demand_draft.objects.filter(pk=id).update(dd_name=dd_name,dd_bank=dd_bank,dd_no=id,dd_amount=dd_amount)
+        demand_draft.objects.filter(pk=id).update(dd_name=dd_name,dd_bank=dd_bank,dd_no=dd_no,dd_amount=dd_amount)
         return redirect('search')
-    id = id
-    print('hello',id)
     data={
     'dd_data':demand_draft.objects.get(dd_no=id)
     }
