@@ -4,21 +4,23 @@
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <meta http-equiv="X-UA-Compatible" content="ie=edge">
-  <title>Document</title>
+  <title>view number</title>
+  <style>
+    .css-serial {
+     counter-reset: serial-number; /* Set the serial number counter to 0 */
+    }
+    .css-serial td:first-child:before {
+     counter-increment: serial-number; /* Increment the serial number counter */
+     content: counter(serial-number); /* Display the counter */
+    }
+  </style>
   <link rel="stylesheet" href="https://bootswatch.com/4/flatly/bootstrap.min.css">
   <script src="https://code.jquery.com/jquery-3.5.1.slim.min.js" integrity="sha384-DfXdz2htPH0lsSSs5nCTpuj/zy4C+OGpamoFVy38MVBnE+IbbVYUew+OrCXaRkfj" crossorigin="anonymous"></script>
 <script src="https://cdn.jsdelivr.net/npm/popper.js@1.16.0/dist/umd/popper.min.js" integrity="sha384-Q6E9RHvbIyZFJoft+2mJbHaEWldlvI9IOYy5n3zV9zzTtmI3UksdQRVvoxMfooAo" crossorigin="anonymous"></script>
 <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.5.0/js/bootstrap.min.js" integrity="sha384-OgVRvuATP1z7JjHLkuOU7Xw704+h835Lr+6QL9UvYjZE3Ipu6Tp75j7Bh/kR0JKI" crossorigin="anonymous"></script>
   <script src="https://code.jquery.com/jquery-3.1.1.min.js" integrity="sha256-hVVnYaiADRTO2PzUGmuLJr8BLUSjGIZsDYGmIJLv2b8=" crossorigin="anonymous"></script>
-<style>
-.css-serial {
- counter-reset: serial-number; /* Set the serial number counter to 0 */
-}
-.css-serial td:first-child:before {
- counter-increment: serial-number; /* Increment the serial number counter */
- content: counter(serial-number); /* Display the counter */
-}
-</style>
+  <link rel="stylesheet" href="https://www.w3schools.com/w3css/4/w3.css">
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
 </head>
 <body class="container">
   <nav class="navbar navbar-expand-lg navbar-dark bg-dark">
@@ -30,45 +32,37 @@
   <div class="collapse navbar-collapse" id="navbarColor02">
     <ul class="navbar-nav mr-auto">
       <li class="nav-item active">
-        <a class="nav-link" href="{% url 'index' %}">डिमांड ड्राफ्ट के लिए। <span class="sr-only">(current)</span></a>
+        <a class="nav-link" href="{% url 'number' %}">Register New Number <span class="sr-only">(current)</span></a>
       </li>
 
-
     </ul>
-      <a class="btn btn-secondary my-2 my-sm-0" href="{% url 'search' %}">Search</a>
+      <!-- <a class="btn btn-secondary my-2 my-sm-0" href="{% url 'search' %}">Search</a> -->
   </div>
-</nav>
-
-<table class="table table-hover css-serial">
-
+  </nav>
+  <table class="table table-hover css-serial">
   <thead>
     <tr>
-      <th scope="col">S-No.</th>
-      <th scope="col">डिमांड ड्राफ्ट नंबर </th>
-      <th scope="col">डिमांड ड्राफ्ट नाम </th>
-      <th scope="col">डिमांड ड्राफ्ट बैंक</th>
-      <th scope="col">डिमांड ड्राफ्ट अमाउंट </th>
-      <th scope="col">डिमांड ड्राफ्ट की दिनांक</th>
-      <th scope="col">Edit</th>
+      <th scope="col">S.No.</th>
+      <th scope="col">Number</th>
+      <th scope="col">Place</th>
+      <th scope="col">Status</th>
+      <th scope="col">Edit/Delete</th>
     </tr>
   </thead>
   <tbody>
-    {% for i in dd_data %}
-    <tr class="table-dark">
+    {% for i in numbers %}
+
+    <tr class="table-success">
       <td>&nbsp;</td>
-      <td>{{i.dd_no}}</td>
-      <td>{{i.dd_name}}</td>
-      <td>{{i.dd_bank}}</td>
-      <td>{{i.dd_amount}}</td>
-      <td>{{i.dd_date}}</td>
-      <td><a href="{% url 'change' i.dd_no %}">Edit</a></td>
+      <td scope="row"><a href="{% url 'edit_detail' i.mob_number %}" style="color:black;">{{i.mob_number}}</a></td>
+      <td>{{i.place}}</td>
+      <td>{{i.status}}</td>
+      <td><a href="{% url 'change' i.mob_number %}" style="color:black;">Edit</a> / <a href="{% url 'delete_number' i.mob_number %}"> <i class="fa fa-trash"></a></td>
     </tr>
+
     {% endfor %}
   </tbody>
-
 </table>
-
-  <h1>{{i.dd_no}}</h1>
 
 </body>
 </html>

@@ -1,0 +1,60 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta http-equiv="X-UA-Compatible" content="ie=edge">
+  <title>Register Number</title>
+  <link rel="stylesheet" href="https://bootswatch.com/4/flatly/bootstrap.min.css">
+</head>
+<body class="container">
+  <nav class="navbar navbar-expand-lg navbar-dark bg-dark">
+  <a class="navbar-brand" href="{% url 'login' %}">Home</a>
+  <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarColor02" aria-controls="navbarColor02" aria-expanded="false" aria-label="Toggle navigation">
+    <span class="navbar-toggler-icon"></span>
+  </button>
+
+  <div class="collapse navbar-collapse" id="navbarColor02">
+    <ul class="navbar-nav mr-auto">
+      <li class="nav-item active">
+        <a class="nav-link" href="{% url 'view' %}">View <span class="sr-only">(current)</span></a>
+      </li>
+
+    </ul>
+      <!-- <a class="btn btn-secondary my-2 my-sm-0" href="{% url 'search' %}">Search</a> -->
+  </div>
+</nav>
+<div class="form-group">
+<form action="{% url 'number' %}" method="post">
+  {% csrf_token %}
+  <div class="form-group has-success">
+    <label class="form-control-label">कृपया नया मोबाइल नंबर पंजीयन करे।</label>
+    <input type="text" class="form-control is-valid" name="numbers" placeholder="मोबाइल नंबर दर्ज करे।">
+  </div>
+  <div class="form-group">
+      <label >Place</label>
+      <select name="num_place" id="">
+        <option value="">Select</option>
+        <option value="Chhatarpur">Chhatarpur</option>
+        <option value="Bijawar">Bijawar</option>
+        <option value="Badamal hera">Bada malHera</option>
+      </select>
+    </div>
+    <div class="form-group">
+        <label for="exampleSelect1">Status</label>
+        <select name="num_status" id="">
+          <option value="">Select</option>
+          <option value="सिम मौजूद है।">सिम मौजूद है।</option>
+          <option value="सिम खो गयी है।">सिम खो गयी है।</option>
+          <option value="सिम सर्विस मई नहीं है।">सिम सर्विस मे नहीं है।</option>
+        </select>
+      </div>
+<button type="submit" class="btn btn-primary">Submit</button>
+</form>
+</div>
+<div class="alert alert-dismissible alert-danger">
+  <button type="button" class="close" data-dismiss="alert">&times;</button>
+  <strong>{{message}}</strong>
+</div>
+</body>
+</html>

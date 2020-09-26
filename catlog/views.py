@@ -1,6 +1,6 @@
 from django.shortcuts import render,redirect
 from django.http import HttpResponse
-from .models import demand_draft
+from .models import demand_draft,number_register,farmer_register
  # Create your views here.
 
 
@@ -11,7 +11,7 @@ def login(request):
     # user=int(request.POST['user'])
     # password=int(request.POST['password'])
     # if user == int(46998) and password == int(123):
-    return render(request,'catlog/index.html')
+    return render(request,'catlog/home_page.html')
     # return render(request,'catlog/login.html')
 
 
@@ -33,6 +33,13 @@ def submit(request):
 
 def change(request,id):
     if request.method =='POST':
+        if len(str(id))>=9:
+            mobile_number=request.POST['number']
+            num_place=request.POST['num_place']
+            num_status=request.POST['num_status']
+            number_register.objects.filter(pk=id).update(mob_number=mobile_number,place=num_place,status=num_status)
+            return redirect('view')
+
         dd_no=request.POST['dd_no']
         dd_name=request.POST['dd_name']
         dd_amount=request.POST['dd_amount']
@@ -40,14 +47,82 @@ def change(request,id):
         dd_date=request.POST['dd_date']
         demand_draft.objects.filter(pk=id).update(dd_name=dd_name,dd_bank=dd_bank,dd_no=dd_no,dd_amount=dd_amount,dd_date=dd_date)
         return redirect('search')
+
+    if len(str(id))==10:
+        data_no={
+        'number_data':number_register.objects.get(pk=id)
+        }
+        return render(request,'catlog/change.html',data_no)
+
     data={
     'dd_data':demand_draft.objects.get(dd_no=id)
     }
-
     return render(request,'catlog/change.html',data)
+
+
+
 def search(request):
 
     dd_dict={
      'dd_data':demand_draft.objects.all()
      }
     return render(request,'catlog/search.html',dd_dict)
+
+
+
+def number(request):
+    if request.method =='POST':
+        number = int(request.POST['numbers'])
+        if len(number_register.objects.filter(pk=number))>0:
+            return render(request,'catlog/number_register.html',{'message':'मोबाइल नंबर पहले से मौजूद है। कृपया नया मोबाइल नंबर डाले या view मे जाकर देखे।'})
+        place=request.POST['num_place']
+        state=request.POST['num_status']
+        number_register(mob_number=number,place=place,status=state).save()
+        print('Numbers:-',number)
+
+    return render(request,'catlog/number_register.html')
+
+def view(request):
+    number={
+    'numbers':number_register.objects.all()
+    }
+
+
+    return render(request,'catlog/view.html',number)
+
+def edit_detail(request,id):
+    if request.method =='POST':
+        name=request.POST['farmer_name']
+        yojna=request.POST['yojna']
+        d=number_register.objects.get(pk=id)
+        status=d.status
+        place=number_register.objects.get(mob_number=id).place
+
+        print(name,yojna,status,place,'Yesd',id)
+
+        farmer_register(mobile_number=number_register.objects.get(pk=id),name=name,yojna=yojna,status=status,place=place).save()
+        details={
+        'detail':farmer_register.objects.filter(mobile_number=id),
+        'mob_number':number_register.objects.get(pk=id),
+        'number':id
+        }
+        print(details['detail'],'Detail')
+        return render(request,'catlog/edit_detail.html',details)
+    details={
+    'detail':farmer_register.objects.filter(mobile_number=id),
+    'mob_number':number_register.objects.get(pk=id),
+    'number':id
+            }
+    return render(request,'catlog/edit_detail.html',details)
+
+def delete_farmer(request,name):
+
+    id=farmer_register.objects.filter(name=name)[0].mobile_number
+    print(type(id),'ID',id)
+
+    farmer_register.objects.filter(name=name).delete()
+    return redirect('edit_detail',id,)
+
+def delete_number(request,id):
+    number_register.objects.get(pk=id).delete()
+    return redirect('view')
