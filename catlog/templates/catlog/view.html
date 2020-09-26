@@ -57,7 +57,7 @@
       <td scope="row"><a href="{% url 'edit_detail' i.mob_number %}" style="color:black;">{{i.mob_number}}</a></td>
       <td>{{i.place}}</td>
       <td>{{i.status}}</td>
-      <td><a href="{% url 'change' i.mob_number %}" style="color:black;">Edit</a> / <a href="{% url 'delete_number' i.mob_number %}"> <i class="fa fa-trash"></a></td>
+      <td><a href="{% url 'change' i.mob_number %}" style="color:black;">Edit</a> / <a href="#"> <i class="fa fa-trash"></a></td>
     </tr>
 
     {% endfor %}
