@@ -73,6 +73,8 @@ def search(request):
 def number(request):
     if request.method =='POST':
         number = int(request.POST['numbers'])
+        if len(str(number))!=10:
+            return render(request,'catlog/number_register.html',{'message':'कृपया वेध्य मोबाइल नंबर दर्ज करें।कृपया पुनः नंबर जांचे।'})
         if len(number_register.objects.filter(pk=number))>0:
             return render(request,'catlog/number_register.html',{'message':'मोबाइल नंबर पहले से मौजूद है। कृपया नया मोबाइल नंबर डाले या view मे जाकर देखे।'})
         place=request.POST['num_place']
