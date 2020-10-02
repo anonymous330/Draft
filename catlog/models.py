@@ -8,6 +8,7 @@ class demand_draft(models.Model):
     dd_bank=models.CharField(max_length=20)
     dd_amount=models.IntegerField()
     dd_date=models.DateTimeField()
+    dd_image=models.ImageField(null=True,blank=True,upload_to="images/")
 
     def __str__(self):
         return f"{self.dd_no} {self.dd_name}"

@@ -136,11 +136,12 @@
       <input type="text" class="form-control"  id="datepicker" value="{{dd_data.dd_date|date:"Y-m-d"}}" placeholder="YYYY-MM-DD" name='dd_date'/>
       <!-- <input type="text" id="datepicker"> -->
     </div>
+    {% if dd_data.dd_image != none %}
     <div class="form-group">
       <label>डिमांड ड्राफ्ट</label> <br>
       <img src="{{dd_data.dd_image.url}}" width="100%" height="500px"/>
-      <h1>{{dd_data.dd_image.url}}</h1>
     </div>
+    {% endif %}
     <div class="form-group">
         <input type="file" placeholder=" Change Photo" name="dd_photo"/>
       </div>
