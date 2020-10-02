@@ -49,11 +49,25 @@ def change(request,id):
         dd_amount=request.POST['dd_amount']
         dd_bank=request.POST['dd_bank']
         dd_date=request.POST['dd_date']
-        dd_image=request.FILES['dd_photo']
+        # if request.FILES['dd_photo'] == '':
+        #     dd_image=demand_draft.objects.filter(pk=id).dd_image
+        # else:
+        # default=request.FILES.get('hide',False)
+        # print('HIDE',default)
+        if 'dd_photo' in request.FILES:
+            dd_image=request.FILES['dd_photo']
+        # demand_draft(dd_name=dd_name,dd_bank=dd_bank,dd_no=dd_no,dd_amount=dd_amount,dd_date=dd_date,dd_image=dd_image).save()
+            obj=demand_draft.objects.get(pk=id)
+            obj.dd_image=dd_image
+            obj.save()
 
-        print(dd_image,'Image','Image')
-        demand_draft(dd_name=dd_name,dd_bank=dd_bank,dd_no=dd_no,dd_amount=dd_amount,dd_date=dd_date,dd_image=dd_image).save()
+        demand_draft.objects.filter(pk=id).update(dd_name=dd_name,dd_bank=dd_bank,dd_no=dd_no,dd_amount=dd_amount,dd_date=dd_date)
+
+
+        # print(dd_image,'Image','Image')
+
         return redirect('search')
+
 
     if len(str(id))==10:
         data_no={
@@ -71,7 +85,7 @@ def change(request,id):
 def search(request):
 
     dd_dict={
-     'dd_data':demand_draft.objects.all()
+     'dd_data':demand_draft.objects.all().order_by('dd_name')
      }
     return render(request,'catlog/search.html',dd_dict)
 
