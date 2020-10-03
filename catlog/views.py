@@ -24,7 +24,7 @@ def submit(request):
     if len(demand_draft.objects.filter(pk=int(request.POST['dd_no']))) >0:
         return render(request,'catlog/index.html',{'message':'यह डिमांड ड्राफ्ट पहले से मौजूद है।'})
     dd_no = request.POST['dd_no']
-    dd_name=request.POST['dd_name']
+    dd_name=request.POST['dd_name'].upper()
     dd_amount=request.POST['dd_amount']
     dd_bank=request.POST['dd_bank']
     dd_date=request.POST['dd_date']
@@ -46,6 +46,7 @@ def change(request,id):
 
         dd_no=request.POST['dd_no']
         dd_name=request.POST['dd_name']
+        dd_name=dd_name.upper()
         dd_amount=request.POST['dd_amount']
         dd_bank=request.POST['dd_bank']
         dd_date=request.POST['dd_date']
