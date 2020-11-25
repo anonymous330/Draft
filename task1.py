@@ -1,6 +1,8 @@
 
 from selenium import webdriver
-
+from selenium.webdriver.support.ui import WebDriverWait
+from selenium.webdriver.support import expected_conditions as ec
+from selenium.webdriver.common.by import By
 import time,os
 
 import requests, bs4
@@ -8,6 +10,8 @@ import pickle,pprint
 from selenium.webdriver.chrome.options import Options
 from selenium.common.exceptions import NoSuchElementException
 import os
+
+
 
 
 
@@ -53,8 +57,8 @@ def delete_cookie(driver,domains=None):
 
 
 def get_data():
-
-    driver.get('https://dbt.mpdage.org/Agri_Index.aspx')
+    url="https://dbt.mpdage.org/Agri_Index.aspx    "
+    driver.get(url)
     print("Page title was '{}'".format(driver.title))
     # time.sleep(100)
     driver.find_element_by_xpath('//*[@id="AlertDiv"]/div[2]/div/div[1]/button').click()
