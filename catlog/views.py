@@ -1,8 +1,12 @@
 from django.shortcuts import render,redirect
 from django.http import HttpResponse
 from .models import demand_draft,number_register,farmer_register
+from sqlalchemy import create_engine
+from sqlalchemy.orm import scoped_session, sessionmaker
  # Create your views here.
 
+engine = create_engine("postgres://kmxkyswiscvymi:7611aec6de2b7052be8059fa505542f0d51be950c8c873d92096db0e25d4834b@ec2-3-213-106-122.compute-1.amazonaws.com:5432/d239ji720r2qie")
+db = scoped_session(sessionmaker(bind=engine))
 
 def login(request):
     # if request.method =='GET':
@@ -146,6 +150,13 @@ def delete_farmer(request,name):
 
     farmer_register.objects.filter(name=name).delete()
     return redirect('edit_detail',id,)
+def enquire_number(request):
+    results=db.execute('SELECT * FROM Farmer_detail').fetchall()
+    result={
+    'results':results
+    }
+    return render(request,'catlog/enquire_numbers.html',result)
+
 
 def delete_number(request,id):
     number_register.objects.get(pk=id).delete()

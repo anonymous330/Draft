@@ -1,0 +1,21 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta http-equiv="X-UA-Compatible" content="ie=edge">
+  <title>Mobile Deatils</title>
+</head>
+<body>
+  {% for result in results %}
+  <h3>{{result.avedan}}</h3>
+  <h3>{{result.Date_time}}</h3>
+  <h3>{{result.last_date}}</h3>
+  <h3>{{result.name}}</h3>
+  <h3>{{result.Gender}}</h3>
+  <h3>{{result.Mobile}}</h3>
+  <h3>{{result.Adhaar}}</h3>
+  <h3>{{result.Yojna}}</h3>
+  {% endfor %}
+</body>
+</html>
