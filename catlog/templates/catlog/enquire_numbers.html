@@ -5,17 +5,77 @@
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <meta http-equiv="X-UA-Compatible" content="ie=edge">
   <title>Mobile Deatils</title>
+  <style>
+    .css-serial {
+     counter-reset: serial-number; /* Set the serial number counter to 0 */
+    }
+    .css-serial td:first-child:before {
+     counter-increment: serial-number; /* Increment the serial number counter */
+     content: counter(serial-number); /* Display the counter */
+    }
+  </style>
+  <link rel="stylesheet" href="https://bootswatch.com/4/flatly/bootstrap.min.css">
+  <script src="https://code.jquery.com/jquery-3.5.1.slim.min.js" integrity="sha384-DfXdz2htPH0lsSSs5nCTpuj/zy4C+OGpamoFVy38MVBnE+IbbVYUew+OrCXaRkfj" crossorigin="anonymous"></script>
+<script src="https://cdn.jsdelivr.net/npm/popper.js@1.16.0/dist/umd/popper.min.js" integrity="sha384-Q6E9RHvbIyZFJoft+2mJbHaEWldlvI9IOYy5n3zV9zzTtmI3UksdQRVvoxMfooAo" crossorigin="anonymous"></script>
+<script src="https://stackpath.bootstrapcdn.com/bootstrap/4.5.0/js/bootstrap.min.js" integrity="sha384-OgVRvuATP1z7JjHLkuOU7Xw704+h835Lr+6QL9UvYjZE3Ipu6Tp75j7Bh/kR0JKI" crossorigin="anonymous"></script>
+  <script src="https://code.jquery.com/jquery-3.1.1.min.js" integrity="sha256-hVVnYaiADRTO2PzUGmuLJr8BLUSjGIZsDYGmIJLv2b8=" crossorigin="anonymous"></script>
+  <link rel="stylesheet" href="https://www.w3schools.com/w3css/4/w3.css">
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
+  <link rel="stylesheet" href="//code.jquery.com/ui/1.12.1/themes/base/jquery-ui.css">
+  <link rel="stylesheet" href="/resources/demos/style.css">
+  <script src="https://code.jquery.com/jquery-1.12.4.js"></script>
+  <script src="https://code.jquery.com/ui/1.12.1/jquery-ui.js"></script>
 </head>
 <body>
-  {% for result in results %}
-  <h3>{{result.avedan}}</h3>
-  <h3>{{result.Date_time}}</h3>
-  <h3>{{result.last_date}}</h3>
-  <h3>{{result.name}}</h3>
-  <h3>{{result.Gender}}</h3>
-  <h3>{{result.Mobile}}</h3>
-  <h3>{{result.Adhaar}}</h3>
-  <h3>{{result.Yojna}}</h3>
-  {% endfor %}
+  <nav class="navbar navbar-expand-lg navbar-dark bg-dark">
+  <a class="navbar-brand" href="{% url 'login' %}">Home</a>
+  <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarColor02" aria-controls="navbarColor02" aria-expanded="false" aria-label="Toggle navigation">
+    <span class="navbar-toggler-icon"></span>
+  </button>
+
+  <div class="collapse navbar-collapse" id="navbarColor02">
+    <ul class="navbar-nav mr-auto">
+      <li class="nav-item active">
+        <a class="nav-link" href="{% url 'number' %}">Register New Number <span class="sr-only">(current)</span></a>
+      </li>
+
+    </ul>
+      <!-- <a class="btn btn-secondary my-2 my-sm-0" href="{% url 'search' %}">Search</a> -->
+  </div>
+  </nav>
+  <table class="table table-hover css-serial">
+  <thead>
+    <tr>
+      <th scope="col">क्रमांक</th>
+      <th scope="col">आवेदन क्रमांक</th>
+      <th scope="col">दिनाकं एवं समय</th>
+      <th scope="col">समाप्ति तिथि</th>
+      <th scope="col">नाम</th>
+      <th scope="col">लिंग</th>
+      <th scope="col">मोबाइल</th>
+      <th scope="col">आधार नंबर</th>
+      <th scope="col">यंत्र/सामग्री</th>
+    </tr>
+  </thead>
+  <tbody>
+    {% for result in results %}
+
+    <tr class="table-success">
+      <td>&nbsp;</td>
+      <td scope="row">{{result.avedan}}</td>
+      <td scope="row">{{result.date_time}}</td>
+      <td scope="row">{{result.last_date}}</td>
+      <td scope="row">{{result.name}}</td>
+      <td scope="row">{{result.gender}}</td>
+      <td scope="row">{{result.mobile}}</td>
+      <td scope="row">{{result.adhaar}}</td>
+      <td scope="row">{{result.yojna}}</td>
+
+    </tr>
+
+    {% endfor %}
+  </tbody>
+</table>
+
 </body>
 </html>
