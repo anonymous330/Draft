@@ -11,7 +11,7 @@
 // }
 
 window.onload = () => {
-  document.getElementById("myBtn").disabled = false;
+  document.getElementById("myBtn").disabled = true;
 }
 function set_parameter(data){
   if (data['data'] == 'False'){
@@ -27,7 +27,7 @@ function set_parameter(data){
     cust=document.getElementById('account_kit').style.border='3px solid #99FF99';
     document.getElementById('cust_id').innerHTML='Valid Welcome Kit Number'+'&#9989;'
     document.getElementById('cust_id').style.color='#60CE80'
-    document.getElementById("myBtn").disabled = false;
+    // document.getElementById("myBtn").disabled = false;
     document.getElementById('debit_kit').disabled=false;
   }
 
