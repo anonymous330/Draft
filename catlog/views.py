@@ -183,18 +183,22 @@ def fino_customers(request):
 
 def validate(request):
     kit_number=request.GET['value']
+    if kit_number=='':
+        return HttpResponse('{"data":"False"}')
     if len(kit_number) ==7:
         try:
-            atm_info=debitCardSerializer(debitCard(pk=kit_number))
+            atm_info=debitCardSerializer(debitCard.objects.get(pk=kit_number))
+            print(atm_info,'atm_info')
             return HttpResponse(json.dumps(atm_info.data))
         except ObjectDoesNotExist or ValueError:
             return HttpResponse('{"data":"False"}')
-    try:
-        kit_info=kit_numbersSerializer(kit_numbers.objects.get(pk=kit_number))
-        return HttpResponse(json.dumps(kit_info.data))
-    except ObjectDoesNotExist or ValueError:
+    else:
+        try:
+            kit_info=kit_numbersSerializer(kit_numbers.objects.get(pk=kit_number))
+            return HttpResponse(json.dumps(kit_info.data))
+        except ObjectDoesNotExist or ValueError:
+            return HttpResponse('{"data":"False"}')
 
-        return HttpResponse('{"data":"False"}')
 
     # if len(kit_info.data)>0:
     #

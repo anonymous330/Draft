@@ -10,6 +10,9 @@
 //   alert('Hello welcome kit')
 // }
 
+window.onload = () => {
+  document.getElementById("myBtn").disabled = false;
+}
 function set_parameter(data){
   if (data['data'] == 'False'){
     console.log(data,'Data')
@@ -17,6 +20,7 @@ function set_parameter(data){
     document.getElementById('cust_id').innerHTML='Invalid Welcome Kit Number'+'&#10060;'
     document.getElementById('cust_id').style.color='red'
     document.getElementById("myBtn").disabled = true;
+    document.getElementById('debit_kit').disabled=true;
   }
   else{
     console.log(data,'Data True')
@@ -24,6 +28,7 @@ function set_parameter(data){
     document.getElementById('cust_id').innerHTML='Valid Welcome Kit Number'+'&#9989;'
     document.getElementById('cust_id').style.color='#60CE80'
     document.getElementById("myBtn").disabled = false;
+    document.getElementById('debit_kit').disabled=false;
   }
 
 
@@ -77,7 +82,7 @@ function load_bar(x)
 
 function welcomeKitValidate(value){
   url='/validate/?value='+value
-  load_bar(0)
+  // load_bar(0)
     var xhttp = new XMLHttpRequest();
     xhttp.onreadystatechange = function() {
       if (this.readyState == 4 && this.status == 200) {
@@ -87,7 +92,7 @@ function welcomeKitValidate(value){
         // console.log(data)
           set_parameter(data)
 
-        load_bar(1)
+        // load_bar(1)
 
       }
     };
@@ -100,7 +105,7 @@ function welcomeKitValidate(value){
 
 function debitValidate(value){
   url='/validate/?value='+value
-  load_bar(0)
+  // load_bar(0)
     var xhttp = new XMLHttpRequest();
     xhttp.onreadystatechange = function() {
       if (this.readyState == 4 && this.status == 200) {
@@ -110,7 +115,7 @@ function debitValidate(value){
         // console.log(data)
           set_parameter_debit(data)
 
-        load_bar(1)
+        // load_bar(1)
 
       }
     };
