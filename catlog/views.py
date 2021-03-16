@@ -1,8 +1,10 @@
 from django.shortcuts import render,redirect
 from django.http import HttpResponse
-from .models import demand_draft,number_register,farmer_register
+from .models import demand_draft,number_register,farmer_register,kit_numbersSerializer,kit_numbers,debitCard,debitCardSerializer
 from sqlalchemy import create_engine
 from sqlalchemy.orm import scoped_session, sessionmaker
+from django.core.exceptions import ObjectDoesNotExist
+import json
  # Create your views here.
 
 
@@ -152,12 +154,48 @@ def delete_farmer(request,name):
 def enquire_number(request):
     engine = create_engine("postgres://kmxkyswiscvymi:7611aec6de2b7052be8059fa505542f0d51be950c8c873d92096db0e25d4834b@ec2-3-213-106-122.compute-1.amazonaws.com:5432/d239ji720r2qie")
     db = scoped_session(sessionmaker(bind=engine))
-    
+
     results=db.execute('SELECT * FROM Farmer_detail').fetchall()
     result={
     'results':results
     }
     return render(request,'catlog/enquire_numbers.html',result)
+
+
+def fino_customers(request):
+    if request.method =='POST':
+        name=request.POST['customer_name']
+        customer_dob=request.POST['customer_dob']
+        account_kit=request.POST['account_kit']
+        atm_kit=request.POST['atm_kit']
+        adhaar_no=request.POST['adhaar_no']
+        mobile_no=request.POST['mobile_no']
+        customer_father=request.POST['customer_father']
+        customer_mother=request.POST['customer_mother']
+
+        return render(request,'catlog/fino_customer.html')
+
+
+    return render(request,'catlog/fino_customer.html')
+
+def validate(request):
+    kit_number=request.GET['value']
+    if len(kit_number) ==7:
+        try:
+            atm_info=debitCardSerializer(debitCard(pk=kit_number))
+            return HttpResponse(json.dumps(atm_info.data))
+        except ObjectDoesNotExist or ValueError:
+            return HttpResponse('{"data":"False"}')
+    try:
+        kit_info=kit_numbersSerializer(kit_numbers.objects.get(pk=kit_number))
+        return HttpResponse(json.dumps(kit_info.data))
+    except ObjectDoesNotExist or ValueError:
+
+        return HttpResponse('{"data":"False"}')
+
+    # if len(kit_info.data)>0:
+    #
+
 
 
 def delete_number(request,id):

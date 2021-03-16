@@ -12,5 +12,7 @@ path('view/',views.view,name='view'),
 path('edit_detail/<int:id>',views.edit_detail,name='edit_detail'),
 path('delete_farmer/<str:name>',views.delete_farmer,name='delete_farmer'),
 path('delete_number/<int:id>',views.delete_number,name='delete_number'),
-path('enquire_number/',views.enquire_number,name='enquire_number')
+path('enquire_number/',views.enquire_number,name='enquire_number'),
+path('fino_customers/',views.fino_customers,name='fino_customers'),
+path('validate/',views.validate,name='validate')
 ]

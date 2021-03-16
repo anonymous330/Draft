@@ -1,0 +1,103 @@
+{% load static %}
+<!DOCTYPE html>
+
+
+<html lang="en">
+<head>
+
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta http-equiv="X-UA-Compatible" content="ie=edge">
+  <link rel="stylesheet" href="//code.jquery.com/ui/1.12.1/themes/base/jquery-ui.css">
+
+  <link rel="stylesheet" href="https://bootswatch.com/4/flatly/bootstrap.min.css">
+  <link rel="stylesheet" href="/static/js/welcome.js">
+
+  <title>Fino Bank Customers</title>
+
+  <link rel="stylesheet" href="//code.jquery.com/ui/1.12.1/themes/base/jquery-ui.css">
+ <script src="https://code.jquery.com/jquery-1.12.4.js"></script>
+ <script src="https://code.jquery.com/ui/1.12.1/jquery-ui.js"></script>
+
+ <script>
+ $( function() {
+   $( "#datepicker" ).datepicker({
+     changeMonth: true,
+     changeYear: true
+   });
+ } );
+ </script>
+
+
+
+
+</head>
+<body class="container">
+
+
+
+  <form action="{% url 'fino_customers' %}" method="post" enctype="multipart/form-data">
+    {% csrf_token %}
+    <fieldset>
+      <legend>कृपया  की जानकारी भरे </legend>
+
+      <div class="form-group">
+        <label >Customer Name</label>
+        <input type="text" class="form-control" placeholder="Customer Name" name='customer_name'>
+      </div>
+
+      <div class="form-group">
+        <label>Welcome Kit Number</label>
+        <input type="text" class="form-control"  id="account_kit" placeholder="Welcome Kit Number" name='account_kit'  onblur="welcomeKitValidate(this.value)" >
+        <span id="cust_id"></span>
+      </div>
+      <div class="form-group hidden-form">
+        <input type="hidden" name="" id='customer_id'>
+      </div>
+
+      <div class="form-group">
+        <label>Atm Kit Number</label>
+        <input type="number" class="form-control" placeholder="Atm Kit Number" class="form-control" id="debit_kit" placeholder="Atm Kit Number" name='atm_kit'  onblur="debitValidate(this.value)">
+        <span id="debit_id"></span>
+      </div>
+
+      <div class="form-group">
+        <label>Adhaar Number</label>
+        <input type="text" class="form-control"  id="" placeholder="Adhaar" name='adhaar_no'/>
+      </div>
+
+      <div class="form-group" id="demo">
+        <label>Customer DOB</label>
+        <input type="text" class="form-control"  id="datepicker" placeholder="YYYY-MM-DD" name='customer_dob'/>
+      </div>
+
+
+
+      <div class="form-group">
+        <label>Mobile Number Customer</label>
+        <input type="text" class="form-control" placeholder="Mobile No," name="mobile_no"/>
+
+      </div>
+      <div class="form-group">
+        <label>Customer Father Name</label>
+        <input type="text" class="form-control"  class="form-control" placeholder="Customer Father Name" name="customer_father"/>
+
+      </div>
+
+      <div class="form-group">
+        <label>Customer Mother</label>
+        <input type="text" class="form-control" id="customer" class="form-control" placeholder="Customer Mother" name="customer_mother"/>
+      </div>
+
+  <button type="submit" class="btn btn-primary" id="myBtn">Submit</button>
+
+
+  </form>
+  <div id="loading-overlay">
+      <div class="loading-icon"></div>
+  </div>
+
+<script type="text/javascript" src="{% static 'js/index.js' %}"></script>
+
+</body>
+</html>
